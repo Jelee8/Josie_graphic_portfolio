@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>Josie's Graphic Design Portfolio</title>
+
+    <meta
+      name="description"
+      content="Portfolio for art and graphic design"
+    />
+    <meta name="author" content="pixelcave" />
+
+    <!-- Icons -->
+    <link
+      rel="icon"
+      href="https://cdn.pixelcave.com/favicon.svg"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link
+      rel="icon"
+      href="https://cdn.pixelcave.com/favicon.png"
+      type="image/png"
+    />
+
+    <!-- Tailwind CSS Play CDN (mostly for development/testing purposes) -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Tailwind CSS v4 Configuration -->
+    <style type="text/tailwindcss">
+      /* Class based dark mode */
+      @custom-variant dark (&:where(.dark, .dark *));
+
+      /* Theme configuration */
+      @theme {
+        /* Fonts */
+        --default-font-family: "Inter";
+      }
+    </style>
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Alpine.js (x-cloak - https://alpinejs.dev/directives/cloak) -->
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Page Container -->
+    <div
+      x-data="{
+        darkMode: false,
+        toggleDarkMode() {
+          this.darkMode = ! this.darkMode;
+
+          // Toggle dark class on html element
+          if (this.darkMode) {
+            document.body.parentNode.classList.add('dark');
+          } else {
+            document.body.parentNode.classList.remove('dark');
+          }
+        }
+      }"
+      class="min-h-dvh min-w-80 bg-white text-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+    >
+      <!-- Page Content -->
+      <main
+        id="page-content"
+        class="mx-auto flex max-w-6xl flex-auto flex-col px-4 pb-4 lg:px-8 lg:pb-8"
+      >
+        <!-- Main Header -->
+        <header
+          id="page-header"
+          class="flex flex-none items-center justify-between py-7"
+        >
+          <div class="flex items-center gap-2">
+            <!-- Logo -->
+            <a
+              href="javascript:void(0)"
+              class="text-2xl font-thin tracking-widest hover:text-purple-600 active:opacity-75 dark:hover:text-purple-400"
+            >
+              Josie Lee
+            </a>
+            <!-- END Logo -->
+
+            <!-- Toggle Dark Mode -->
+            <button
+              x-on:click="toggleDarkMode()"
+              type="button"
+              class="relative inline-flex size-9 items-center justify-center text-zinc-600 hover:opacity-75 dark:text-zinc-400"
+            >
+              <div
+                x-cloak
+                x-show="!darkMode"
+                x-transition:enter="transition ease-out duration-150"
+                x-transition:enter-start="opacity-0 rotate-180"
+                x-transition:enter-end="opacity-100 rotate-0"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100 rotate-0"
+                x-transition:leave-end="opacity-0 rotate-180"
+                class="absolute inset-0 flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="hi-outline hi-sun inline-block size-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                  />
+                </svg>
+              </div>
+              <div
+                x-cloak
+                x-show="darkMode"
+                x-transition:enter="transition ease-out duration-150"
+                x-transition:enter-start="opacity-0 rotate-180"
+                x-transition:enter-end="opacity-100 rotate-0"
+                x-transition:leave="transition ease-in duration-100"
+                x-transition:leave-start="opacity-100 rotate-0"
+                x-transition:leave-end="opacity-0 rotate-180"
+                class="absolute inset-0 flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="hi-outline hi-moon inline-block size-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                  />
+                </svg>
+              </div>
+            </button>
+            <!-- END Toggle Dark Mode -->
+          </div>
+          <div class="flex items-center gap-4">
+            <!-- Nav -->
+            <nav class="flex items-center gap-6">
+              <a
+                href="#projects"
+                class="text-sm font-medium decoration-purple-600 decoration-2 underline-offset-8 hover:text-black hover:underline dark:decoration-purple-400 dark:hover:text-white"
+              >
+                Projects
+              </a>
+              <a
+                href="#contact"
+                class="text-sm font-medium decoration-purple-600 decoration-2 underline-offset-8 hover:text-black hover:underline dark:decoration-purple-400 dark:hover:text-white"
+              >
+                Contact
+              </a>
+            </nav>
+            <!-- END Nav -->
+          </div>
+        </header>
+        <!-- END Main Header -->
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+          <!-- Intro -->
+          <div
+            class="relative col-span-1 flex flex-col overflow-hidden rounded-xl bg-zinc-100 px-12 py-10 md:col-span-12 dark:bg-zinc-900"
+          >
+            <div
+              aria-hidden="true"
+              class="absolute -top-20 -left-20 size-48 rounded-full bg-yellow-500 blur-2xl"
+            ></div>
+            <div
+              aria-hidden="true"
+              class="absolute -top-10 -right-10 size-64 rounded-full bg-orange-300 blur-3xl"
+            ></div>
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 bg-yellow-100/50 backdrop-blur-md dark:bg-yellow-900/75"
+            ></div>
+            <div class="relative mt-auto">
+              <h1 class="text-4xl font-medium text-black dark:text-white">
+                Josie Lee
+              </h1>
+              <h2 class="mt-3 leading-relaxed text-zinc-900 dark:text-zinc-200">
+                Graphic designer with 3+ years of experience in illustration, logo design, UI prototyping, and frontend development. 
+              </h2>
+            </div>
+          </div>
+          <!-- END Intro -->
+
+          <!-- Projects -->
+          <a
+            id="projects"
+            href="#"
+            onclick="openPopup(event, this)"
+            data-template="project-quest"
+            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
+          >
+            <div
+              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="hi-solid hi-arrow-small-right inline-block size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
+              Quest Education Associates
+            </h3>
+            <h4 class="text-sm text-zinc-600 dark:text-zinc-400"> </h4>
+            <div
+              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
+            >
+            <!-- 
+              <img
+                src="assets/ChatGPT Image QEA.png"
+                alt="Quest Education company logo"
+                class="rounded-xl object-cover w-full aspect-[4/3]"
+              />
+            -->
+            </div>
+          </a>
+
+          <a
+            href="#"
+            onclick="openPopup(event, this)"
+            data-template="project-soundbrush"
+            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
+          >
+            <div
+              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="hi-solid hi-arrow-small-right inline-block size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
+              Soundbrush
+            </h3>
+            <h4 class="text-sm text-zinc-600 dark:text-zinc-400"> </h4>
+            <div
+              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
+            >
+              <img
+                src="assets/soundbrush_logo.jpeg"
+                alt="Soundbrush logo"
+                class="rounded-xl object-cover w-full aspect-[4/3]"
+              />
+            </div>
+          </a>
+          <a
+            href="#"
+            onclick="openPopup(event, this)"
+            data-template="project-anicon"
+            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
+          >
+            <div
+              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="hi-solid hi-arrow-small-right inline-block size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
+              UMass Ani-Con
+            </h3>
+            <h4 class="text-sm text-zinc-600 dark:text-zinc-400"> </h4>
+            <div
+              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
+            >
+              <img
+                src="assets/anicon_ticket_header.png"
+                alt="UMass Ani-Con ticket header art"
+                class="rounded-xl object-cover w-full aspect-[4/3]"
+              />
+            </div>
+          </a>
+          <a
+            href="#"
+            onclick="openPopup(event, this)"
+            data-template="project-animeclub"
+            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
+          >
+            <div
+              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="hi-solid hi-arrow-small-right inline-block size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
+              UMass Anime Club
+            </h3>
+            <h4 class="text-sm text-zinc-600 dark:text-zinc-400"> </h4>
+            <div
+              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
+            >
+              <img
+                src="assets/umassanime_banner.PNG"
+                alt="UMass Anime Club logo"
+                class="rounded-xl object-cover w-full aspect-[4/3]"
+              />
+            </div>
+          </a>
+          <a
+            href="#"
+            onclick="openPopup(event, this)"
+            data-template="project-dressup"
+            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
+          >
+            <div
+              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="hi-solid hi-arrow-small-right inline-block size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
+              Dress-Up Game
+            </h3>
+            <h4 class="text-sm text-zinc-600 dark:text-zinc-400"> </h4>
+            <div
+              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
+            >
+              <img
+                src="assets/dress_up_logo.PNG"
+                alt="Dressup Game logo"
+                class="rounded-xl object-cover w-full aspect-[4/3]"
+              />
+            </div>
+          </a>
+          <a
+            href="#"
+            onclick="openPopup(event, this)"
+            data-template="project-logo"
+            class="group relative col-span-1 overflow-hidden rounded-xl bg-zinc-100 p-6 hover:bg-zinc-200/75 active:bg-zinc-200 md:col-span-4 dark:bg-zinc-900 dark:hover:bg-zinc-800/75 dark:active:bg-zinc-800"
+          >
+            <div
+              class="absolute top-6 right-6 scale-0 opacity-0 transition duration-75 ease-out group-hover:scale-100 group-hover:opacity-100"
+              aria-hidden="true"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="hi-solid hi-arrow-small-right inline-block size-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.75 12a.75.75 0 0 1 .75-.75h13.19l-5.47-5.47a.75.75 0 0 1 1.06-1.06l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06l5.47-5.47H4.5a.75.75 0 0 1-.75-.75Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-zinc-950 dark:text-zinc-50">
+              Strawberry Jewelry
+            </h3>
+            <h4 class="text-sm text-zinc-600 dark:text-zinc-400"> </h4>
+            <div
+              class="mt-10 transition duration-150 ease-out group-hover:scale-105"
+            >
+              <img
+                src="assets/strawberryjewelry_logo.png"
+                alt="Project 6"
+                class="rounded-xl object-cover w-full aspect-[4/3]"
+              />
+            </div>
+          </a>
+          <!-- END Projects -->
+
+          <!-- Contact -->
+          <div
+            id="contact"
+            class="relative col-span-1 flex flex-col overflow-hidden rounded-xl bg-zinc-100 px-12 py-20 md:col-span-12 dark:bg-zinc-900"
+          >
+            <div
+              aria-hidden="true"
+              class="absolute -top-20 -left-20 size-48 rounded-full bg-pink-300 blur-2xl"
+            ></div>
+            <div
+              aria-hidden="true"
+              class="absolute -right-48 -bottom-48 size-96 rounded-full bg-indigo-200 blur-2xl dark:bg-indigo-400/50"
+            ></div>
+            <div
+              aria-hidden="true"
+              class="absolute -top-48 -right-48 size-96 rounded-full bg-purple-200 blur-3xl dark:bg-purple-400/50"
+            ></div>
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 bg-purple-100/50 backdrop-blur-md dark:bg-purple-900/75"
+            ></div>
+            <div class="relative mt-auto">
+              <h2 class="text-4xl font-medium text-black dark:text-white">
+                Contact Me
+              </h2>
+              <h3 class="mt-3 leading-relaxed text-zinc-900 dark:text-zinc-200">
+                If you're looking for a creative partner for your ideas contact me at 
+                <a href="mailto:josielee2022@gmail.com" <span style="color:deeppink; text-decoration: underline;">josielee2022@gmail.com></a>
+              </h3>
+
+            </div>
+          </div>
+          <!-- END Contact -->
+
+          <!-- Footer -->
+          <footer
+            class="flex flex-col gap-6 py-7 text-center text-sm md:col-span-12 md:flex-row-reverse md:justify-between md:gap-0 md:text-left"
+          >
+            <nav class="flex items-center justify-center gap-4">
+              <a
+                href="https://github.com/Jelee8"
+                class="text-zinc-400 hover:text-[#333] dark:hover:text-zinc-50"
+                target="_blank"
+              >
+                <svg
+                  class="icon-github inline-block size-10"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+                  ></path>
+                </svg>
+              </a>
+            </nav>
+            <div class="text-zinc-500 dark:text-zinc-400/80">
+              <span class="font-medium">Olivia</span> ©
+              <span x-text="new Date().getFullYear()"></span>
+              <p>All right reserved by <a href="https://pixelcave.com/" target="_blank" class="font-bold">Pixelcave</a> • Distributed by <a href="https://themewagon.com" target="_blank" class="font-bold">ThemeWagon</a></p>
+            </div>
+          </footer>
+          <!-- END Footer -->
+        </div>
+        <!-- END Main Content -->
+      </main>
+      <!-- END Page Content -->
+    </div>
+    <!-- END Page Container -->
+
+    <!-- Project Content Templates -->
+    <template id="project-quest">
+      <h2 class="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+        Quest Education Associates
+      </h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        Lead Technical Artist &amp; Graphic Design Consultant
+      </p>
+
+      <!-- <img src="assets/project1.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]" /> -->
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Overview</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        I work as the Lead Technical Artist at Quest Education Associates. As the Lead Technical Artist I take direction primarily from the Creative Director and work in a structured pipeline from initial ideation to refinement through art and code to first release and sustaining support. The end goal is to convert art into static and real-time interactive assets that run efficiently in a game engine throughout releases. <br><br>
+        The Technical Artist serves as the bridge between creative vision and game-engine implementation. Working closely with the Creative Director and Technical Director, the Technical Artist translates artistic direction into optimized, real-time interactive assets that perform efficiently inside the game engine.
+        This role begins at the earliest stages of visual ideation and continues through production, engine integration, release, and ongoing optimization.
+        The Technical Artist ensures that assets, such as characters, environments, UI, and effects, moves through a structured pipeline from concept → production → optimization → engine integration → live gameplay systems.
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Core Responsibilities</h3>
+      <ul class="mt-2 list-disc space-y-3 pl-6 text-zinc-700 dark:text-zinc-300">
+        <li>Develop Art Guide: with direction from Creative Director and Technical Director.
+          <ul class="mt-2 list-disc space-y-1 pl-6 text-zinc-700 dark:text-zinc-300">
+            <li>Core concept and theme
+            </li>
+            <li>Approved art styles (e.g. parallax, pixel, hand-painted, paper-style, etc)
+            </li>
+            <li>Color palette guidelines
+            </li>
+            <li>Lighting rules and visual mood standards
+            </li>
+            <li>Polygon budget, texture size and animation frame counts, etc
+            </li>
+            <li>Character proportions and design rules 
+            </li>
+            <li>Animation style standards
+            </li>
+            <li>Technical specifications for assets
+            </li>
+          </ul>
+          The desired result will be a centralized Single Source of Truth (In-Scope) that will be used by the entire team, keeping Directors, Artist and Programmers aligned from inception to production.
+        </li>
+        <li>Concept Art Development: Technical Artist will work with the Creative Director to define the visual identity of characters, worlds, props, and UI.
+        </li>
+        <li>Asset Production: Technical Artist will work to create in-scope art to ensure that game runs efficiently, converting concept art into game-ready assets, such as, but not limited to sprite sheets, backgrounds, UI elements, particle textures
+        </li>
+        <li>Technical Art Processing: Artwork shall be transformed into the structured, optimized data that the game engine and code can be actually use in real-time. Games assets to be packaged, optimized, tagged, and connected to game engine so code can interact with them. The converted, engine-ready assets shall carry defined metadata, structure, and performance optimization so that programmers can interact with them. Includes but not limited to exporting correct formats, compression, building sprite atlases, generating collision meshes, building animation controllers, LOD (level of detail) versions.
+        </li>
+        <li>Integration Into the Game Engine: Technical artist shall work with programmer(s) to import assets into the game engine.
+        </li>
+        <li>Animation Systems: Technical artist produces animation data and clips so that programmer can build logic to trigger it. Technical Artist and programmer will create naming conventions and game integration as well as animation controllers that artists populate with animation clips. Including but not limited to organizing animation clips, establishing naming conventions, building animation controllers, coordinating animation states with gameplay triggers.
+        </li>
+        <li>Effects & Interaction: Technical Artist will also work with Creative Director also create dynamic effects that enhance gameplay and immersion. Including but not limited to explosions, magic spells, smoke, lighting and, weather.
+        </li>
+        <li>Art Iteration & Optimization: The Technical Artist shall fix, refine and optimize visuals, working with programmers to integrate optimized-performance art based on gameplay testing and real-world performance. Common fixes are but not limited to reducing texture size, lowering polygon counts, batching draw calls, simplifying shader. This work continues throughout beta testing, launch, and post-release updates.
+        </li>
+        <li>Final Packaging: Technical Artist shall ensure assets are complete, integrated and properly functional when compiled into final game builds. Technical Artist shall have a validation role in, but not limited to asset bundling, compression, platform conversion (Web or Mobile) and build generation.
+        </li>
+      </ul>
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Contributions</h3>
+      <ul class="mt-2 list-disc space-y-1 pl-6 text-zinc-700 dark:text-zinc-300">
+        <li>Designing the logo that represents the company</li>
+        <li>Developing the art style and art guide of the game with input and guidance from the Creative Director</li>
+        <li>Illustrating concept art to flesh out ideas and visual identities of characters, props, and UI</li>
+        <li>Collaborating with the programmer(s) to create website mockups and to integrate assets into the game </li>
+      </ul>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+       
+      </div>
+    </template>
+
+    <template id="project-soundbrush">
+      <h2 class="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+        Soundbrush
+      </h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        Visual Identity &amp; Frontend Development
+      </p>
+
+      <figure>
+        <img src="assets/soundbrush_logo.jpeg" alt="The Soundbrush logo, which depicts a paintbrush with splashes of colorful paint in a way that resembles a speaker with soundwaves coming out of it. To the left of it is the name of Soundbrush with a miniature version of the logo in all black" class="mt-6 w-full rounded-xl object-cover aspect-[12.5/8]" />
+        <figcaption>Soundbrush Logo</figcaption>
+      </figure>
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Overview</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        Soundbrush is the winner of the grand prize at HackUMass XIII. For this project I have partnered to create an art app that connects color to sound by playing a synth whos pitch depends on the color that is chosen. This project has potential application for providing accessibility to those with visual impairments. 
+      </p>
+      
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">What it Does</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">An art app which links each color to a note to be played when drawing. There are 8 different synth notes that play depending on what color hue is selected. 
+        Users are able to change the color of their brush using sliders for lightness and saturation and a color wheel for hue. In addition to sound, the color name is also 
+        displayed depending on hue. We implemented undo and redo functions and a simple saving system that allows you to save sketches and load them from a dropdown menu.
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Process</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">We started by using Figma to plan out our web design. Then we built the app using NextJs framework with p5 library to handle the drawing. We used p5.js to create the 
+        canvas and tone.js to import synths.
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Contributions</h3>
+      <ul class="mt-2 list-disc space-y-1 pl-6 text-zinc-700 dark:text-zinc-300">
+        <li>Designing the logo</li>
+        <li>Developing the project concept idea</li>
+        <li>Creating the Figma UI prototype</li>
+        <li>Implementing the synths and brush sliders</li>
+      </ul>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <figure>
+          <img src="assets/soundbrush_logo_dark.jpeg" alt="A dark mode version of the Soundbrush logo, which replaces black with white and has a black background" class="mt-6 w-full rounded-xl object-cover aspect-[11/7.5]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Soundbrush logo dark version</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/soundbrush_concept.png" alt="Sketches of a colorwheel split into 6 parts for 6 synths. Below it is a sketch of a keyboard showing the top keys being mapped to the color wheel" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Soundbrush early concept sketches</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/soundbrush_logo_sketch.png" alt="9 rough sketches of the soundbrush logo" class="mt-6 w-full rounded-xl object-cover aspect-[11/8]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Soundbrush logo sketches</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/soundbrush_figma.jpeg" alt="The Figma UI mockup with a black toolbar on the left side of the screen and a white canvas on the right. The toolbar from top to bottom has undo and redo buttons, recent colors, colorwheel, brightness and saturation sliders, brush size slider,buttons for paintbrush tool, eraser tool, and paint bucket tool, buttons to load sketch and save." class="mt-6 w-full rounded-xl object-cover aspect-[16/10]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Soundbrush Figma prototype</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/soundbrush_final_ui.jpeg" alt="The final implementation of the UI with a black toolbar on the left side of the screen and a white canvas on the right. On the canvas is a drawing of the autism creature. The toolbar from top to bottom has the name, colorwheel, lightness and saturation sliders, a rectangle showing the color, the color name and hexcode, brush size slider, undo and redo buttons, clear and save buttons, a dropdown menu for previous drawings, and a button to load drawings." class="mt-6 w-full rounded-xl object-cover aspect-[16/9]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Soundbrush final UI implementation</figcaption>
+        </figure>
+      </div>
+    </template>
+
+    <template id="project-anicon">
+      <h2 class="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+        UMass Ani-Con
+      </h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        Event Branding &amp; Promotional Design
+      </p>
+
+      <figure>
+        <img src="assets/anicon_ticket_header.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[11/5]" />
+        <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Banner shown on the ticketing website</figcaption>
+      </figure>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Overview</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        The E-Board of the Anime and Manga Club of UMass Amherst led the organization of UMass Amherst's very first anime convention. The convention sold over 100 tickets and generated over 4 times the cost of the event. We collaborated with four other clubs to host Artist's Alley, games, panels, and contests. As the Social Media Manager I created promotional materials and reached out to clubs for collaborations. 
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Process</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        All posters were created on Canva and the Ticketing banner was illustrated on Procreate. 
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Responsibilties and Contributions</h3>
+      <ul class="mt-2 list-disc space-y-1 pl-6 text-zinc-700 dark:text-zinc-300">
+        <li>Developing a cohesive aesthetic for all promotional materials</li>
+        <li>Creating promotional posters and artwork</li>
+        <li>Advertising the event through Instagram and in person</li>
+        <li>Collaborating with other clubs</li>
+        <li>Running activities during the event</li>
+        <li>Creating a closing slideshow to recap the event</li>
+      </ul>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <figure>
+          <img src="assets/anicon_flyer0.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Poster for vendor and volunteer signups</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/anicon_flyer1.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Final event poster with QR code</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/anicon_flyer2.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Event poster without QR</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/anicon_caard.jpeg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8/11]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">UMass Ani-Con Caard</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/anicon_digital_signage.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Digital poster to be displayed on large screens</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/anicon_thankyou.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Thank you post</figcaption>
+        </figure>
+      </div>
+    </template>
+
+    <template id="project-animeclub">
+      <h2 class="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+        UMass Anime Club
+      </h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        Social Media Management
+      </p>
+
+      <img src="assets/umassanime_banner.PNG" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]" />
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Overview</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        For 2 academic years I was the Social Media Manager for the Anime and Manga Club at UMass Amherst. As an E-Board member and Social Media Manager I was in charge of running the club's Instagram page as well as collaborating with other E-Board members to run club meetings and events.
+      </p>
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Responsibilities and Contributions</h3>
+      <ul class="mt-2 list-disc space-y-1 pl-6 text-zinc-700 dark:text-zinc-300">
+        <li>Designing post templates and promotional material on Canva</li>
+        <li>Posting weekly announcements for club meetings</li>
+        <li>Reaching out to other clubs for collaborations</li>
+        <li>Creating Caard pages for all club links</li>
+        <li>Helping plan and run weekly meetings</li>
+        <li>Designing the Instagram pfp/mascot</li>
+      </ul>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <figure>
+          <img src="assets/umassanime_pfp.PNG" alt="" class="mt-6 w-full rounded-xl object-cover aspect-1">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">UMass Anime & Manga Club Instagram pfp</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/umassanime_officer_post.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-1">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Instagram post for club officers</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/umassanime_poster.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">UMass Anime & Manga Club poster</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/umassanime_maze.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Poster for trip to Mike's Maze</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/umassanime_round1.png" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Poster for trip to Round 1</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/umassanime_caard.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[8.5/11]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">UMass Anime & Manga Club Caard</figcaption>
+        </figure>
+      </div>
+    </template>
+
+    <template id="project-dressup">
+      <h2 class="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+        Dress-Up Game
+      </h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        Character Illustration &amp; Game Art
+      </p>
+
+      <img src="assets/dress_up_logo.PNG" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]" />
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Overview</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        I created a dress-up game that provides extensive character customization and outfit selection. Players can click cycle through different options for skin color, face, hair styles, hair color, tops, bottoms, under garments, shoes, jewelry, and outerwear to make different combinations.
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Process</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        I first made a UI prototype using Figma. During this stage I decided on the color palette and options that I wanted to include in the game. I created at total of 85 hand-drawn assets using Procreate. I was able to implement most of the features in the prototype using html, css, and javascript. Image assets are layered on top of each other to be switched out with click buttons.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <figure>
+          <img src="assets/dress_up_assets_skin.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[5/4]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Asset folder for skin color</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dress_up_assets_bhair.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[5/4]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Asset folder for hair</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dress_up_screenshot1.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[5/6]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Screenshot of the game</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dress_up_screenshot2.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[5/6]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300"></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dress_up_screenshot3.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[5/6]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300"></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dress_up_screenshot4.jpg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[5/6]">
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300"></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dress_up_figma.jpeg" alt="" class="mt-6 w-full rounded-xl object-cover aspect-[16/9]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Figma UI prototype</figcaption>
+        </figure>
+      </div>
+    </template>
+
+    <template id="project-strawberryjewelry">
+      <h2 class="text-3xl font-semibold text-zinc-950 dark:text-zinc-50">
+        Strawberry Jewelry
+      </h2>
+      <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+        Logo Design and Brand Identity
+      </p>
+
+      <img src="assets/strawberryjewelry_logo.png" alt="Strawberry Jewelry logo, which is a stylized light red strawberry with diamond shaped seeds with the name strawberry jewelry in cursive below it." class="mt-6 w-full rounded-xl object-cover aspect-[5/4]" />
+
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Overview</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        I created a fictional business and went through the full process of brainstorming, prototyping, and designing a brand name, logo, business cards, and a letter heading.
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Brand Description</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        Strawberry Jewelry is a small business specializing in handmade accessories including jewelry, keychains, and more. Each piece is handcrafted with attention to every detail. Our first product lineup included polymer clay earrings and needle felted keychains. We are focused on bringing you unique pieces that bring joy and whimsy into your life.
+      </p>
+      <h3 class="mt-8 text-xl font-medium text-zinc-950 dark:text-zinc-50">Process</h3>
+      <p class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">
+        Development began with paper and digital sketches of the logo and font used for the brand. After settling on a design I created the final logo, business card, and letterhead designs in Adobe InDesign.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <figure>
+          <img src="assets/strawberryjewelry_logo_mono.png" alt="" class="w-full rounded-xl object-cover aspect-[4/3]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Monocolor version of the logo</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/strawberryjewelry_sketches1.jpeg" alt="" class="w-full rounded-xl object-cover aspect-[4/3]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Brainstorming sketches + color palette</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/strawberryjewelry_sketches2.jpeg" alt="" class="w-full rounded-xl object-cover aspect-[2/3]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Paper sketches</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/strawberryjewelry_sketches3.jpeg" alt="" class="w-full rounded-xl object-cover aspect-[2/3]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300"> </figcaption>
+        </figure>
+        <figure>
+          <img src="assets/strawberryjewelry_business_card.jpeg" alt="" class="w-full rounded-xl object-cover aspect-[4/5]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Strawberry Jewelry business card</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/strawberryjewelry_letterhead.jpeg" alt="" class="w-full rounded-xl object-cover aspect-[8/11]" />
+          <figcaption class="mt-2 leading-relaxed text-zinc-700 dark:text-zinc-300">Strawberry Jewelry letterhead</figcaption>
+        </figure>
+      </div>
+    </template>
+    <!-- END Project Content Templates -->
+
+    <!-- Full Page Popup Overlay -->
+    <div
+      id="fullPagePopup"
+      class="fixed inset-0 z-50 hidden overflow-y-auto bg-white p-8 dark:bg-zinc-950"
+    >
+      <button
+        onclick="closePopup()"
+        class="absolute top-6 right-6 text-4xl leading-none text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+      <div id="popupBody" class="mx-auto max-w-3xl pt-12"></div>
+    </div>
+    <!-- End Full Page Popup Overlay -->
+
+    <script>
+      const popup = document.getElementById("fullPagePopup");
+      const popupBody = document.getElementById("popupBody");
+
+      function openPopup(event, card) {
+        event.preventDefault(); // stops href="#" from jumping to the top
+        const tpl = document.getElementById(card.dataset.template);
+        if (!tpl) return;
+        popupBody.innerHTML = tpl.innerHTML;
+        popup.scrollTop = 0;
+        popup.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden"); // stop background scrolling
+      }
+
+      function closePopup() {
+        popup.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      }
+
+      // Close with the Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePopup();
+      });
+    </script>
+  </body>
+</html>
